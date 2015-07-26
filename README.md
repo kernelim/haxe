@@ -82,3 +82,27 @@ Haxe   | neko
 2.*    | 1.*
 3.0.0  | 2.0.0
 3.1.3  | 2.0.0
+
+## Fedora RPMs
+
+Under a git clone of this package, simply run:
+
+    ./packaging/build-srpm -o .
+
+It will generate a Source RPM of HEAD that can be built locally
+using rpmbuild or mock, or under Fedora's build servers.
+
+For example, an build-srpm run has generated:
+
+    haxe-3.2.0-2015.07.23.234315.git1a7d770290ec.fc21.src.rpm
+
+Subsequently, running the Fedora 'mock' tool on the source RPM
+has generated:
+
+    haxe-3.2.0-2015.07.23.234315.git1a7d770290ec.fc21.src.rpm
+    haxe-3.2.0-2015.07.23.234315.git1a7d770290ec.fc21.x86_64.rpm
+    haxe-debuginfo-3.2.0-2015.07.23.234315.git1a7d770290ec.fc21.x86_64.rpm
+
+Tested with Fedora 21.
+
+This install paths of the haxe RPM are /usr/bin, and /usr/share/haxe.

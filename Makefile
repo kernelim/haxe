@@ -13,6 +13,7 @@
 INSTALL_DIR=/usr
 INSTALL_BIN_DIR=$(INSTALL_DIR)/bin
 INSTALL_LIB_DIR=$(INSTALL_DIR)/lib/haxe
+RUNTIME_INSTALL_LIB_DIR=$(INSTALL_LIB_DIR)
 
 OUTPUT=haxe
 EXTENSION=
@@ -97,13 +98,13 @@ install:
 	-mkdir -p $(INSTALL_LIB_DIR)/lib
 	rm -f $(INSTALL_BIN_DIR)/haxe
 	cp haxe $(INSTALL_LIB_DIR)
-	ln -s $(INSTALL_LIB_DIR)/haxe $(INSTALL_BIN_DIR)/haxe
+	ln -s $(RUNTIME_INSTALL_LIB_DIR)/haxe $(INSTALL_BIN_DIR)/haxe
 	chmod -R a+rx $(INSTALL_LIB_DIR)
 	chmod 777 $(INSTALL_LIB_DIR)/lib
 	# cp extra/haxelib_src/haxelib_script.sh $(INSTALL_DIR)/bin/haxelib
 	echo "#!/bin/sh" > $(INSTALL_BIN_DIR)/haxelib
-	echo "exec haxe -cp $(INSTALL_LIB_DIR)/extra/haxelib_src/src --run tools.haxelib.Main \"\$$@\"" >> $(INSTALL_BIN_DIR)/haxelib
-	chmod a+rx $(INSTALL_BIN_DIR)/haxe $(INSTALL_BIN_DIR)/haxelib
+	echo "exec haxe -cp $(RUNTIME_INSTALL_LIB_DIR)/extra/haxelib_src/src --run tools.haxelib.Main \"\$$@\"" >> $(INSTALL_BIN_DIR)/haxelib
+	chmod a+rx $(INSTALL_LIB_DIR)/haxe $(INSTALL_BIN_DIR)/haxelib
 
 # will install native version of the tools instead of script ones
 install_tools: tools
